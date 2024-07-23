@@ -19,7 +19,7 @@ RUN npm run build
 FROM nginx:1.27-alpine
 WORKDIR /usr/share/nginx/html
 RUN rm -rf ./*
-COPY --from=build /app/dist .
+COPY --from=build /app/dist /usr/share/nginx/html
 EXPOSE 5173
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
 
