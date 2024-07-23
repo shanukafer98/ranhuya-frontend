@@ -1,22 +1,27 @@
 # Build react app
 FROM node:alpine3.20 as build
+
+# Declare build time environment variables
+ARG VITE_FIREBASE_API_KEY
+ARG VITE_BACKEND_URL
+
+# Set default values for environment variables
+ENV VITE_FIREBASE_API_KEY=$VITE_FIREBASE_API_KEY
+ENV VITE_BACKEND_URL=$VITE_BACKEND_URL
+
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install --legacy-peer-deps
 COPY . .
-# Copy the .env file
-COPY .env .env
 RUN npm run build
 
 # Server with nginx
 FROM nginx:1.27-alpine
 WORKDIR /usr/share/nginx/html
 RUN rm -rf ./*
-COPY --from=build /app/dist /usr/share/nginx/html
+COPY --from=build /app/dist .
 EXPOSE 5173
-ENTRYPOINT [ "nginx", "-g", "daemon off;" ]
-
-
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
 
 
 
