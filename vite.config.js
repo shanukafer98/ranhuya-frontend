@@ -39,24 +39,24 @@
 // });
 
 
-// import { defineConfig } from 'vite';
-// import react from '@vitejs/plugin-react-swc';
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react-swc';
 
-// export default defineConfig({
-//   plugins: [react()],
-//   server: {
-//   },
-//   define: {
-//     'process.env.VITE_BACKEND_URL': JSON.stringify('https://wedding-plannerback-ge2a313u1-shanukafer98s-projects.vercel.app'),
-//   },
-// });
+export default defineConfig({
+  plugins: [react()],
+  server: {
+  },
+  define: {
+    'process.env.VITE_BACKEND_URL': JSON.stringify('http://13.49.80.197:3000'),
+  },
+});
 
 
 // vite.config.js or vite.config.ts
-import { defineConfig } from 'vite';
+// import { defineConfig } from 'vite';
 
-export default defineConfig({
-  server: {
-    port: 5173,
-  },
-});
+// export default defineConfig({
+//   server: {
+//     port: 5173,
+//   },
+// });
