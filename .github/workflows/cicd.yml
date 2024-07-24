@@ -5,6 +5,13 @@ on:
     branches:
       - main
 
+  # workflow_dispatch: # Manually trigger workflow
+  #   inputs:
+  #     custom-trigger:
+  #       description: 'Trigger the workflow manually'
+  #       required: false
+  #       default: 'manual'
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,7 +25,7 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t shanukafer98/ranhuya-frontend:latest \
+          docker build -t shanukafer98/ranhuya-frontend \
             --build-arg VITE_FIREBASE_API_KEY=${{ secrets.VITE_FIREBASE_API_KEY }} \
             --build-arg VITE_BACKEND_URL=${{ secrets.VITE_BACKEND_URL }} \
             .
@@ -28,25 +35,13 @@ jobs:
 
   deploy:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
-      - name: Checkout Source
-        uses: actions/checkout@v4
+      - name: Pull Image from Docker Hub
+        run: docker pull shanukafer98/ranhuya-frontend:latest
 
-      - name: Deploy to AWS EC2
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        run: |
-          # Set up SSH
-          echo "${SSH_PRIVATE_KEY}" > private_key.pem
-          chmod 600 private_key.pem
-          ssh -i private_key.pem -o StrictHostKeyChecking=no ec2-user@your-ec2-instance-ip << 'EOF'
-            # Pull the Docker image
-            docker pull shanukafer98/ranhuya-frontend:latest
+      - name: Delete Old Container
+        run: docker rm -f react-app-container || echo "No existing container to remove"
 
-            # Remove the old container if it exists
-            docker rm -f react-app-container || echo "No existing container to remove"
-
-            # Run the new container
-            docker run -d -p 80:80 --name react-app-container shanukafer98/ranhuya-frontend:latest
-          EOF
+      - name: Run Docker Container
+        run: docker run -d -p 80:80 --name react-app-container shanukafer98/ranhuya-frontend:latest
