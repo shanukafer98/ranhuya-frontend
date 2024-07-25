@@ -184,7 +184,7 @@ useEffect(() => {
       
       console.log("Submitting form data:", formData);
 
-      const res = await fetch(`${url}/api/listing/create`, {
+      const res = await fetch("http://13.49.80.197:3000/api/listing/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
