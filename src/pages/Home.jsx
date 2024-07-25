@@ -190,7 +190,7 @@ export default function Home() {
         to={'/search'}
         className='text-xs sm:text-sm btn bg-blue-700 hover:bg-slate-900 text-white px-4 py-2 rounded-lg hover:opacity-95 w-fit'
       >
-        Let's get started...
+       Explore Services
       </Link>
     </div>
     <div className='flex justify-center lg:w-1/3'>
