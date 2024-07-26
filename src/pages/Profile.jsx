@@ -124,10 +124,20 @@ export default function Profile() {
 
   const handleShowListings = async () => {
     try {
-      const res = await fetch(`${url}/user/listings/${currentUser._id}`, 
-        { method: 'GET',
-          credentials: 'include',}
-      );
+      const res = await fetch(`${url}/user/listings/${currentUser._id}`, {
+        method: 'GET',
+        credentials: 'include', // Include credentials (cookies) in the request
+        headers: {
+          'Content-Type': 'application/json', // Ensure headers are set correctly
+        },
+      });
+      
+      // Check if the response status is OK (200-299)
+      if (!res.ok) {
+        const errorData = await res.json();
+        toast.error(errorData.message || "Error fetching listings");
+        return;
+      }
       const data = await res.json();
       if (data.success === false) {
         toast.error("There are no listings to show");
