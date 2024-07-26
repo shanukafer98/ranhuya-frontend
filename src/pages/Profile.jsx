@@ -62,6 +62,7 @@ export default function Profile() {
       dispatch(updateUserStart());
       const res = await fetch(`${url}/user/update/${currentUser._id}`, {
         method: "POST",
+        credentials:"include",
         headers: {
           "Content-Type": "application/json",
         
@@ -87,6 +88,7 @@ export default function Profile() {
       dispatch(deleteUserStart());
       const res = await fetch(`${url}/user/delete/${currentUser._id}`, {
         method: "DELETE",
+        credentials:"include",
       });
       const data = await res.json();
       if (data.success === false) {
@@ -138,6 +140,7 @@ export default function Profile() {
     try {
       const res = await fetch(`${url}/listing/delete/${listingId}`, {
         method: "DELETE",
+        credentials:"include",
       });
       const data = await res.json();
       if (data.success === false) {

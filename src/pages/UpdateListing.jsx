@@ -193,6 +193,7 @@ export default function UpdateListing() {
       setError(false);
       const res = await fetch(`${url}/listing/update/${params.listingId}`, {
         method: "POST",
+        credentials:"include",
         headers: {
           "Content-Type": "application/json",
         },
