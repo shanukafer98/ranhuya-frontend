@@ -33,7 +33,10 @@ export default function SignIn() {
         toast.error('Email not verified. Please verify your email.');
         return;
       }
-
+      
+      // // Generate the token
+      const token = await userCredential.user.getIdToken(true);
+      console.log('Generated Token:', token); // For debugging
 
       // // Verify the token is generated correctly
       if (!token) {
@@ -43,7 +46,7 @@ export default function SignIn() {
       // Send token to the backend
       const res = await fetch(`${url}/auth/signin`, {
         method: 'POST',
-   
+        credentials: 'include', 
         
         headers: {
           'Content-Type': 'application/json',
