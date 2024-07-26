@@ -185,18 +185,17 @@ useEffect(() => {
       console.log("Submitting form data:", formData);
 
 
-      const tokenCookie = document.cookie.split('; ').find(row => row.startsWith('access_token'));
-    if (!tokenCookie) throw new Error("No access token found");
+ 
 
       const res = await fetch(`${url}/listing/create`, {
         method: "POST",
+        credentials:"include",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`
-          
-     
+       
+        
         },
-        credentials: 'include',
+
         body: JSON.stringify({
           ...formData,
           userRef: currentUser._id,
