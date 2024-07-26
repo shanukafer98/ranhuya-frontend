@@ -124,7 +124,10 @@ export default function Profile() {
 
   const handleShowListings = async () => {
     try {
-      const res = await fetch(`${url}/user/listings/${currentUser._id}`);
+      const res = await fetch(`${url}/user/listings/${currentUser._id}`, 
+        { method: 'GET',
+          credentials: 'include',}
+      );
       const data = await res.json();
       if (data.success === false) {
         toast.error("There are no listings to show");

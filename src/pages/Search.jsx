@@ -36,7 +36,12 @@ export default function Search() {
         setLoading(true);
         setShowMore(false);
         const searchQuery = urlParams.toString();
-        const res = await fetch(`${url}/listing/get?${searchQuery}`);
+        const res = await fetch(`${url}/listing/get?${searchQuery}`,
+          {
+            method: "GET",
+           credentials:"include",
+          }
+        );
         if (!res.ok) {
           throw new Error("Network response was not ok");
         }
@@ -82,7 +87,10 @@ export default function Search() {
       const urlParams = new URLSearchParams(location.search);
       urlParams.set("startIndex", startIndex);
       const searchQuery = urlParams.toString();
-      const res = await fetch(`${url}/api/listing/get?${searchQuery}`);
+      const res = await fetch(`${url}/api/listing/get?${searchQuery}`,{
+        method: "GET",
+        credentials:"include",
+      });
       if (!res.ok) {
         throw new Error("Network response was not ok");
       }

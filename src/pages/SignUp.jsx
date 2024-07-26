@@ -33,6 +33,7 @@ export default function SignUp() {
 
       const response = await fetch(`${url}/auth/signup`, {
         method: 'POST',
+       
         headers: {
           'Content-Type': 'application/json',
         },
