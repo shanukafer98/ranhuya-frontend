@@ -40,6 +40,7 @@ export default function Profile() {
       (snapshot) => {
         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         setFilePerc(Math.round(progress));
+        toast.success("Image uploaded successfully!");
       },
       (error) => {
         toast.error("Error uploading image (image must be less than 2 MB)");
@@ -348,7 +349,7 @@ export default function Profile() {
           alt="profile"
           className="rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2 shadow-2xl"
         />
-        <p className="text-sm self-center">
+        {/* <p className="text-sm self-center">
           {filePerc > 0 && filePerc < 100 ? (
             <span className="text-slate-700 text-lg">{`Uploading ${filePerc}%`}</span>
           ) : filePerc === 100 ? (
@@ -356,7 +357,7 @@ export default function Profile() {
           ) : (
             ""
           )}
-        </p>
+        </p> */}
         <input
           type="text"
           placeholder="username"
