@@ -8,7 +8,7 @@ export default function Contact({ listing }) {
   useEffect(() => {
     const fetchServiceProvider = async () => {
       try {
-        const res = await fetch(`${url}/api/user/${listing.userRef}`);
+        const res = await fetch(`${url}/user/${listing.userRef}`);
         if (!res.ok) {
           throw new Error('Failed to fetch service provider details');
         }

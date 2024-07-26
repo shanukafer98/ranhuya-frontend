@@ -31,7 +31,7 @@ export default function SignUp() {
         password: formData.password,
       };
 
-      const response = await fetch(`${url}/api/auth/signup`, {
+      const response = await fetch(`${url}/auth/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

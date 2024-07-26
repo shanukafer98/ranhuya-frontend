@@ -85,7 +85,7 @@ export default function Profile() {
   const handleDeleteUser = async () => {
     try {
       dispatch(deleteUserStart());
-      const res = await fetch(`${url}/api/user/delete/${currentUser._id}`, {
+      const res = await fetch(`${url}/user/delete/${currentUser._id}`, {
         method: "DELETE",
       });
       const data = await res.json();
@@ -105,7 +105,7 @@ export default function Profile() {
   const handleSignOut = async () => {
     try {
       dispatch(signOutUserStart());
-      const res = await fetch(`${url}/api/auth/signout`);
+      const res = await fetch(`${url}/auth/signout`);
       const data = await res.json();
       if (data.success === false) {
         dispatch(deleteUserFailure(data.message));
@@ -122,7 +122,7 @@ export default function Profile() {
 
   const handleShowListings = async () => {
     try {
-      const res = await fetch(`${url}/api/user/listings/${currentUser._id}`);
+      const res = await fetch(`${url}/user/listings/${currentUser._id}`);
       const data = await res.json();
       if (data.success === false) {
         toast.error("There are no listings to show");
@@ -136,7 +136,7 @@ export default function Profile() {
 
   const handleListingDelete = async (listingId) => {
     try {
-      const res = await fetch(`${url}/api/listing/delete/${listingId}`, {
+      const res = await fetch(`${url}/listing/delete/${listingId}`, {
         method: "DELETE",
       });
       const data = await res.json();

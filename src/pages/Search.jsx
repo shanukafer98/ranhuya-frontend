@@ -36,7 +36,7 @@ export default function Search() {
         setLoading(true);
         setShowMore(false);
         const searchQuery = urlParams.toString();
-        const res = await fetch(`${url}/api/listing/get?${searchQuery}`);
+        const res = await fetch(`${url}/listing/get?${searchQuery}`);
         if (!res.ok) {
           throw new Error("Network response was not ok");
         }
