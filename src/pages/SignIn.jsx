@@ -46,7 +46,7 @@ export default function SignIn() {
       // Send token to the backend
       const res = await fetch(`${url}/auth/signin`, {
         method: 'POST',
-        credentials: 'include', 
+     
         
         headers: {
           'Content-Type': 'application/json',
