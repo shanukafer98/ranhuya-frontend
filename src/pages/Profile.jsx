@@ -332,8 +332,9 @@ export default function Profile() {
 //   };
 
 
-  return (
-    <div className="p-3 max-w-lg mx-auto">
+return (
+  <div className="flex flex-col lg:flex-row gap-12">
+    <div className="lg:w-1/2 w-full mx-6">
       <h1 className="text-3xl font-semibold text-center my-7">Profile</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
@@ -349,15 +350,6 @@ export default function Profile() {
           alt="profile"
           className="rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2 shadow-2xl"
         />
-        {/* <p className="text-sm self-center">
-          {filePerc > 0 && filePerc < 100 ? (
-            <span className="text-slate-700 text-lg">{`Uploading ${filePerc}%`}</span>
-          ) : filePerc === 100 ? (
-            <span className="text-green-700 text-lg">Image successfully uploaded!</span>
-          ) : (
-            ""
-          )}
-        </p> */}
         <input
           type="text"
           placeholder="username"
@@ -401,26 +393,33 @@ export default function Profile() {
         >
           Delete account
         </button>
-        <button onClick={handleSignOut} className="bg-red-600 hover:bg-red-400 text-white font-bold py-2 px-4 rounded">
+        <button
+          onClick={handleSignOut}
+          className="bg-red-600 hover:bg-red-400 text-white font-bold py-2 px-4 rounded"
+        >
           Sign out
         </button>
       </div>
-
       <div className="flex justify-center">
-        <button onClick={handleShowListings} className="w-auto bg-yellow-600 hover:bg-yellow-300 text-white font-bold py-2 px-4 rounded my-6">
+        <button
+          onClick={handleShowListings}
+          className="w-auto bg-yellow-600 hover:bg-yellow-300 text-white font-bold py-2 px-4 rounded my-6"
+        >
           Show Listings
         </button>
       </div>
-
-      {userListings && userListings.length > 0 && (
-        <div className="flex flex-col gap-4">
-          <h1 className="text-center mt-7 text-2xl font-semibold">
+    </div>
+    <div className="lg:w-1/2 w-full  mx-6">
+    <h1 className="text-3xl font-semibold text-center my-7">
             Your Listings
           </h1>
+      {userListings && userListings.length > 0 && (
+        <div className="flex flex-col gap-4 ">
+          
           {userListings.map((listing) => (
             <div
               key={listing._id}
-              className="border rounded-lg p-3 flex justify-between items-center gap-4"
+              className="border border-yellow-600 border-2  rounded-lg p-3 flex flex-col sm:flex-row justify-between items-center gap-4 shadow-2xl"
             >
               <Link
                 to={`/listing/${listing._id}`}
@@ -431,23 +430,27 @@ export default function Profile() {
                   alt="listing cover"
                   className="h-16 w-16 object-contain"
                 />
-                <p>{listing.title}</p>
+                <p className="font-bold">{listing.title}</p>
               </Link>
-              <div className="flex flex-col items-center">
+              <div className="flex flex-col items-center gap-2">
+                <Link to={`/update-listing/${listing._id}`}>
+                  <button className="bg-green-600 hover:bg-green-800 rounded w-auto uppercase text-white px-2 shadow-lg">
+                    Edit
+                  </button>
+                </Link>
                 <button
                   onClick={() => handleListingDelete(listing._id)}
-                  className="bg-red-600 hover:bg-red-800 rounded w-auto uppercase text-white "
+                  className="bg-red-600 hover:bg-red-800 rounded w-auto uppercase text-white px-2 shadow-lg"
                 >
                   Delete
                 </button>
-                <Link to={`/update-listing/${listing._id}`}>
-                  <button className="bg-green-600 hover:bg-green-800 rounded w-auto uppercase text-white ">Edit</button>
-                </Link>
               </div>
             </div>
           ))}
         </div>
       )}
     </div>
-  );
+  </div>
+);
+
 }

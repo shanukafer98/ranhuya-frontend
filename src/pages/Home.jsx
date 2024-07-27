@@ -188,7 +188,7 @@ export default function Home() {
       </div>
       <Link
         to={'/search'}
-        className='text-xs sm:text-sm btn bg-blue-700 hover:bg-slate-900 text-white px-4 py-2 rounded-lg hover:opacity-95 w-fit'
+        className='text-xs sm:text-sm btn bg-blue-600 hover:bg-slate-800 text-white px-4 py-2 rounded-lg hover:opacity-95 w-fit shadow-2xl border-blue-900'
       >
        Explore Services
       </Link>

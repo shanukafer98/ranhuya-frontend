@@ -52,10 +52,16 @@ export default function UpdateListing() {
   const [loading, setLoading] = useState(false);
 
   const handleImageSubmit = (e) => {
+  
+  
     if (files.length > 0 && files.length + formData.imageUrls.length < 7) {
       setImageUploading(true);
 
-      const promises = files.map(file => storeMedia(file));
+      const promises = [];
+      
+      for (let i = 0; i < files.length; i++) {
+        promises.push(storeMedia(files[i]));
+      }
       Promise.all(promises)
         .then((urls) => {
           setFormData({
@@ -70,12 +76,12 @@ export default function UpdateListing() {
         });
     } else {
       setImageUploading(false);
-      toast("Please select an image to upload!", {
+      toast("You can only upload 6 images per listing", {
         icon: "💡",
       });
     }
   };
-
+  
   const handleVideoSubmit = (e) => {
     if (video) {
       if (video.size > 100 * 1024 * 1024) {
@@ -361,11 +367,11 @@ export default function UpdateListing() {
           </div>
         </div>
         <div className="flex flex-col gap-4 flex-1">
-          <div className="bg-gray-50 border border-gray-200 p-3 rounded">
+        <div className="flex flex-col">
             <h2 className="text-2xl font-semibold mb-4">Images</h2>
             <div className="flex flex-wrap gap-2">
               {formData.imageUrls.map((url, index) => (
-                <div key={index} className="relative w-20 h-20">
+                <div key={index} className="relative w-20 h-20 m-2">
                   <img
                     src={url}
                     alt={`image-${index}`}
@@ -386,22 +392,22 @@ export default function UpdateListing() {
               accept="image/*"
               multiple
               onChange={(e) => setFiles(e.target.files)}
-              className="mt-3"
+                  className="p-3 border border-gray-300 rounded-lg"
             />
             <button
               type="button"
               onClick={handleImageSubmit}
               disabled={imageUploading}
-              className="bg-blue-500 text-white px-3 py-1 rounded mt-2"
+               className="p-3 bg-blue-500 hover:bg-blue-800 text-white rounded-lg uppercase hover:opacity-95 mt-4"
             >
               {imageUploading ? "Uploading..." : "Upload Images"}
             </button>
           </div>
-          <div className="bg-gray-50 border border-gray-200 p-3 rounded">
+          <div className="flex flex-col">
             <h2 className="text-2xl font-semibold mb-4">Video</h2>
             {formData.videoUrl ? (
               <div className="relative">
-                <video controls className="w-full rounded">
+                <video controls className="w-full rounded m-2">
                   <source src={formData.videoUrl} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
@@ -425,7 +431,7 @@ export default function UpdateListing() {
                   type="button"
                   onClick={handleVideoSubmit}
                   disabled={videoUploading}
-                  className="bg-blue-500 hover:bg-blue-800 text-white px-3 py-1 rounded mt-2"
+                  className="p-3 bg-blue-500 hover:bg-blue-800 text-white rounded-lg uppercase hover:opacity-95 mt-4"
                 >
                   {videoUploading ? "Uploading..." : "Upload Video"}
                 </button>
