@@ -109,7 +109,7 @@ export default function Listing() {
         </p>
       )}
 
-      <div className="flex flex-col max-w-4xl mx-auto p-5 my-7 gap-4 bg-white shadow-lg rounded-lg">
+      <div className="flex flex-col max-w-4xl mx-auto p-5 my-7 gap-4 bg-slate-200 shadow-lg rounded-lg">
         <p className="text-4xl font-extrabold font-serif text-center">{listing.title}</p>
         <div className="my-3 text-2xl font-semibold text-center text-green-700">
           {listing.regularPrice.toLocaleString("lkr-LK", {

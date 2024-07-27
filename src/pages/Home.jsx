@@ -184,11 +184,11 @@ export default function Home() {
         All in One place
       </h1>
       <div className='text-gray-600 text-lg sm:text-1xl'>
-        Mangalam is the best place to find all the wedding services you need for your special day.
+        Ranhuya is the best place to find all the wedding services you need for your special day.
       </div>
       <Link
         to={'/search'}
-        className='text-xs sm:text-sm btn bg-blue-600 hover:bg-slate-800 text-white px-4 py-2 rounded-lg hover:opacity-95 w-fit shadow-2xl border-blue-900'
+        className='lg:text-lg sm:text-sm btn bg-slate-500 hover:bg-slate-800 text-white px-4 py-2 rounded-lg hover:opacity-95 w-fit shadow-2xl border-blue-900'
       >
        Explore Services
       </Link>
