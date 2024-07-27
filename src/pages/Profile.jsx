@@ -407,7 +407,7 @@ export default function Profile() {
       </div>
 
       <div className="flex justify-center">
-        <button onClick={handleShowListings} className="w-auto bg-yellow-600 hover:bg-yellow-300 text-white font-bold py-2 px-4 rounded">
+        <button onClick={handleShowListings} className="w-auto bg-yellow-600 hover:bg-yellow-300 text-white font-bold py-2 px-4 rounded my-6">
           Show Listings
         </button>
       </div>
@@ -436,12 +436,12 @@ export default function Profile() {
               <div className="flex flex-col items-center">
                 <button
                   onClick={() => handleListingDelete(listing._id)}
-                  className="bg-red-600 hover:bg-red-800 rounded w-auto uppercase text-white p-2"
+                  className="bg-red-600 hover:bg-red-800 rounded w-auto uppercase text-white "
                 >
                   Delete
                 </button>
                 <Link to={`/update-listing/${listing._id}`}>
-                  <button className="bg-green-600 hover:bg-green-800 rounded w-auto uppercase text-white p-2">Edit</button>
+                  <button className="bg-green-600 hover:bg-green-800 rounded w-auto uppercase text-white ">Edit</button>
                 </Link>
               </div>
             </div>
