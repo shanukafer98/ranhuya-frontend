@@ -262,7 +262,7 @@ export default function Home() {
           <div>
             <div className='my-3'>
               <h2 className='text-2xl font-semibold text-slate-600'>Ashataka Listing</h2>
-              <Link className='text-sm text-blue-800 hover:underline' to={'/search?categorie=ashataka'}>Show more ashataka services</Link>
+              <Link className='text-sm text-blue-800 hover:underline' to={'/search?categorie=ashtaka'}>Show more ashataka services</Link>
             </div>
             <div className='flex flex-wrap gap-4'>
               {ashatakaListings.map((listing) => (
@@ -288,7 +288,7 @@ export default function Home() {
           <div>
             <div className='my-3'>
               <h2 className='text-2xl font-semibold text-slate-600'>Wedding Cake Listing</h2>
-              <Link className='text-sm text-blue-800 hover:underline' to={'/search?categorie=weddingCake'}>Show more wedding cake services</Link>
+              <Link className='text-sm text-blue-800 hover:underline' to={'/search?categorie=weddingCakes'}>Show more wedding cake services</Link>
             </div>
             <div className='flex flex-wrap gap-4'>
               {weddingCakeListings.map((listing) => (
