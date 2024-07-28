@@ -97,6 +97,7 @@ export default function Home() {
     };
 
     const fetchWeddingCakeListings = async () => {
+      
       try {
         const res = await fetch(`${url}/listing/get?categorie=weddingCakes&limit=4`);
         const data = await res.json();
