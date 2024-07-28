@@ -78,7 +78,7 @@ export default function Home() {
 
     const fetchAshatakaListings = async () => {
       try {
-        const res = await fetch(`${url}/listing/get?categorie=ashataka&limit=4`);
+        const res = await fetch(`${url}/listing/get?categorie=ashtaka&limit=4`);
         const data = await res.json();
         setAshatakaListings(data);
       } catch (error) {
@@ -98,7 +98,7 @@ export default function Home() {
 
     const fetchWeddingCakeListings = async () => {
       try {
-        const res = await fetch(`${url}/listing/get?categorie=weddingCake&limit=4`);
+        const res = await fetch(`${url}/listing/get?categorie=weddingCakes&limit=4`);
         const data = await res.json();
         setWeddingCakeListings(data);
       } catch (error) {
