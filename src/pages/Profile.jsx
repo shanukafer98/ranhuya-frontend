@@ -334,9 +334,9 @@ export default function Profile() {
 
 return (
   <div className="flex flex-col lg:flex-row gap-12">
-    <div className="lg:w-1/2 w-full mx-6">
+    <div className="lg:w-1/2 w-full ">
       <h1 className="text-3xl font-semibold text-center my-7">Profile</h1>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4 ">
         <input
           onChange={(e) => setFile(e.target.files[0])}
           type="file"
@@ -409,7 +409,7 @@ return (
         </button>
       </div>
     </div>
-    <div className="lg:w-1/2 w-full  mx-6">
+    <div className="lg:w-1/2 w-full  ">
     <h1 className="text-3xl font-semibold text-center my-7">
             Your Listings
           </h1>
