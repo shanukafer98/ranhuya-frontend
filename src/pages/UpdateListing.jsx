@@ -9,6 +9,7 @@ import { app } from "../firebase";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import JoditEditor from "jodit-react";
 const url = import.meta.env.VITE_BACKEND_URL;
 
 export default function UpdateListing() {
@@ -52,13 +53,11 @@ export default function UpdateListing() {
   const [loading, setLoading] = useState(false);
 
   const handleImageSubmit = (e) => {
-  
-  
     if (files.length > 0 && files.length + formData.imageUrls.length < 7) {
       setImageUploading(true);
 
       const promises = [];
-      
+
       for (let i = 0; i < files.length; i++) {
         promises.push(storeMedia(files[i]));
       }
@@ -81,7 +80,7 @@ export default function UpdateListing() {
       });
     }
   };
-  
+
   const handleVideoSubmit = (e) => {
     if (video) {
       if (video.size > 100 * 1024 * 1024) {
@@ -107,6 +106,13 @@ export default function UpdateListing() {
         icon: "💡",
       });
     }
+  };
+
+  const handleDescriptionChange = (value) => {
+    setFormData({
+      ...formData,
+      description: value,
+    });
   };
 
   const storeMedia = async (file) => {
@@ -199,7 +205,7 @@ export default function UpdateListing() {
       setError(false);
       const res = await fetch(`${url}/listing/update/${params.listingId}`, {
         method: "POST",
-        credentials:"include",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -224,16 +230,15 @@ export default function UpdateListing() {
     }
   };
 
-
-
-
-
   return (
     <main className="p-3 max-w-4xl mx-auto">
       <h1 className="text-3xl font-semibold text-center my-7">
         Update a Listing
       </h1>
-      <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-10 shadow-2xl p-10">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col sm:flex-row gap-10 shadow-2xl p-10"
+      >
         <div className="flex flex-col gap-4 flex-1 ">
           <input
             type="text"
@@ -247,13 +252,9 @@ export default function UpdateListing() {
             value={formData.title}
           />
 
-          <textarea
-            placeholder="Description"
-            className="border p-3 rounded-lg "
-            id="description"
-            required
-            onChange={handleChange}
+          <JoditEditor
             value={formData.description}
+            onChange={handleDescriptionChange}
           />
           <input
             type="text"
@@ -267,10 +268,8 @@ export default function UpdateListing() {
           <div className="flex flex-wrap gap-6">
             <div className="flex items-center gap-2">
               <input
-                type="number"
+                type="text"
                 id="regularPrice"
-                min="50"
-                max="10000000"
                 required
                 className="p-3 border border-gray-300 rounded-lg"
                 onChange={handleChange}
@@ -367,7 +366,7 @@ export default function UpdateListing() {
           </div>
         </div>
         <div className="flex flex-col gap-4 flex-1">
-        <div className="flex flex-col">
+          <div className="flex flex-col">
             <h2 className="text-2xl font-semibold mb-4">Images</h2>
             <div className="flex flex-wrap gap-2">
               {formData.imageUrls.map((url, index) => (
@@ -392,13 +391,13 @@ export default function UpdateListing() {
               accept="image/*"
               multiple
               onChange={(e) => setFiles(e.target.files)}
-                  className="p-3 border border-gray-300 rounded-lg"
+              className="p-3 border border-gray-300 rounded-lg"
             />
             <button
               type="button"
               onClick={handleImageSubmit}
               disabled={imageUploading}
-               className="p-3 bg-blue-500 hover:bg-blue-800 text-white rounded-lg uppercase hover:opacity-95 mt-4"
+              className="p-3 bg-blue-500 hover:bg-blue-800 text-white rounded-lg uppercase hover:opacity-95 mt-4"
             >
               {imageUploading ? "Uploading..." : "Upload Images"}
             </button>
@@ -444,16 +443,15 @@ export default function UpdateListing() {
         <div className="bg-red-500 text-white p-3 rounded mt-4">{error}</div>
       )}
       <div className="flex justify-center">
-      <button
-        type="submit"
-        onClick={handleSubmit}
-        disabled={loading}
-        className="bg-green-500 hover:bg-green-800  text-white px-6 py-3 rounded mt-4"
-      >
-        {loading ? "Updating..." : "Update Listing"}
-      </button>
+        <button
+          type="submit"
+          onClick={handleSubmit}
+          disabled={loading}
+          className="bg-green-500 hover:bg-green-800  text-white px-6 py-3 rounded mt-4"
+        >
+          {loading ? "Updating..." : "Update Listing"}
+        </button>
       </div>
-      
     </main>
   );
 }

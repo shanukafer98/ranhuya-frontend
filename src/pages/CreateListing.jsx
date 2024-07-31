@@ -9,6 +9,7 @@ import { app } from "../firebase";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import JoditEditor from 'jodit-react';
 
 
 export default function CreateListing() {
@@ -98,6 +99,15 @@ useEffect(() => {
       });
     }
   };
+
+
+  const handleDescriptionChange = (value) => {
+    setFormData({
+      ...formData,
+      description: value,
+    });
+  };
+
 
   const storeMedia = async (file) => {
     return new Promise((resolve, reject) => {
@@ -233,13 +243,9 @@ useEffect(() => {
             value={formData.title}
           />
          
-          <textarea
-            placeholder="Description"
-            className="border p-3 rounded-lg"
-            id="description"
-            required
-            onChange={handleChange}
+         <JoditEditor
             value={formData.description}
+            onChange={handleDescriptionChange}
           />
           <input
             type="text"
@@ -253,10 +259,9 @@ useEffect(() => {
           <div className="flex flex-wrap gap-6">
             <div className="flex items-center gap-2">
               <input
-                type="number"
+                type="text"
                 id="regularPrice"
-                min="50"
-                max="10000000"
+               
                 required
                 className="p-3 border border-gray-300 rounded-lg"
                 onChange={handleChange}

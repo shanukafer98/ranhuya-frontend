@@ -2,7 +2,7 @@
   "name": "client",
   "private": true,
   "version": "0.0.0",
-  "proxy":"http://13.49.80.197:3000",
+  "proxy": "http://13.49.80.197:3000",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -14,6 +14,7 @@
     "@reduxjs/toolkit": "^1.9.5",
     "cors": "^2.8.5",
     "firebase": "^10.3.1",
+    "jodit-react": "^4.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
