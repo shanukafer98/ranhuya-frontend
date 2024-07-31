@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Navigation } from 'swiper/modules';
-import SwiperCore from 'swiper';
-import 'swiper/css/bundle';
 import ListingItem from '../components/ListingItem';
 import {ring} from '../assets';
 
@@ -29,7 +26,7 @@ export default function Home() {
 
   
 
-  SwiperCore.use([Navigation]);
+
 
 
   useEffect(() => {
@@ -203,7 +200,7 @@ export default function Home() {
 
 
       {/* Listing results for featured, catering, and DJ */}
-      <div className='max-w-7xl mx-auto p-3 flex flex-col gap-8 my-10'>
+      <div className='max-w-7xl mx-auto p-3 flex flex-col gap-8 my-10 '>
         
         {djListings && djListings.length > 0 && (
           <div>
@@ -238,7 +235,7 @@ export default function Home() {
               <h2 className='text-2xl font-semibold text-slate-600'>Photography Listing</h2>
               <Link className='text-sm text-blue-800 hover:underline' to={'/search?categorie=photography'}>Show more photography services</Link>
             </div>
-            <div className='flex flex-wrap gap-4'>
+            <div className='flex flex-row-4 gap-4'>
               {photographyListings.map((listing) => (
                 <ListingItem listing={listing} key={listing._id} />
               ))}

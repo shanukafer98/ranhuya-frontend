@@ -24,8 +24,9 @@ export default function ListingItem({ listing }) {
             </p>
           </div>
           <p className='text-sm text-gray-600 line-clamp-2'>
-          {listing.regularPrice.toLocaleString('lkr-LK', { style: 'currency', currency: 'LKR' })}{' '}
-          </p>
+  {'LKR ' + listing.regularPrice}
+</p>
+
           {/* <p className='text-slate-500 mt-2 font-semibold '>
             $
             {listing.offer
