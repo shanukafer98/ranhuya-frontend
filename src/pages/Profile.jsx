@@ -419,7 +419,7 @@ return (
           {userListings.map((listing) => (
             <div
               key={listing._id}
-              className="border border-yellow-600 border-2  rounded-lg p-3 flex flex-col sm:flex-row justify-between items-center gap-4 shadow-2xl"
+              className=" border-yellow-600 border-2 mx-6  rounded-lg p-3 flex flex-col sm:flex-row justify-between items-center gap-4 shadow-2xl"
             >
               <Link
                 to={`/listing/${listing._id}`}
