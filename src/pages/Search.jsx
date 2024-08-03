@@ -36,12 +36,10 @@ export default function Search() {
         setLoading(true);
         setShowMore(false);
         const searchQuery = urlParams.toString();
-        const res = await fetch(`${url}/listing/get?${searchQuery}`,
-          {
-            method: "GET",
-           credentials:"include",
-          }
-        );
+        const res = await fetch(`${url}/listing/get?${searchQuery}`, {
+          method: "GET",
+          credentials: "include",
+        });
         if (!res.ok) {
           throw new Error("Network response was not ok");
         }
@@ -87,9 +85,9 @@ export default function Search() {
       const urlParams = new URLSearchParams(location.search);
       urlParams.set("startIndex", startIndex);
       const searchQuery = urlParams.toString();
-      const res = await fetch(`${url}/api/listing/get?${searchQuery}`,{
+      const res = await fetch(`${url}/api/listing/get?${searchQuery}`, {
         method: "GET",
-        credentials:"include",
+        credentials: "include",
       });
       if (!res.ok) {
         throw new Error("Network response was not ok");
@@ -107,7 +105,9 @@ export default function Search() {
       <div className="p-7 border-b-2 md:border-r-2 md:min-h-screen md:w-1/4 w-full">
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div className="flex flex-col md:flex-row items-center gap-4">
-            <label className="font-semibold md:w-1/3 w-full">Search Term:</label>
+            <label className="font-semibold md:w-1/3 w-full">
+              Search Term:
+            </label>
             <input
               type="text"
               id="searchTerm"
@@ -148,36 +148,41 @@ export default function Search() {
               className="border rounded-lg p-3 w-full shadow-2xl"
             >
               <option value="">All District</option>
-              <option value="ampara">Ampara</option>
-              <option value="anuradhapura">Anuradhapura</option>
-              <option value="badulla">Badulla</option>
-              <option value="batticaloa">Batticaloa</option>
-              <option value="colombo">Colombo</option>
-              <option value="galle">Galle</option>
-              <option value="gampaha">Gampaha</option>
-              <option value="hambantota">Hambantota</option>
-              <option value="jaffna">Jaffna</option>
-              <option value="kalutara">Kalutara</option>
-              <option value="kandy">Kandy</option>
-              <option value="kegalle">Kegalle</option>
-              <option value="kilinochchi">Kilinochchi</option>
-              <option value="kurunegala">Kurunegala</option>
-              <option value="mannar">Mannar</option>
-              <option value="matale">Matale</option>
-              <option value="matara">Matara</option>
-              <option value="monaragala">Monaragala</option>
-              <option value="mullaitivu">Mullaitivu</option>
-              <option value="nuwara eliya">Nuwara Eliya</option>
-              <option value="polonnaruwa">Polonnaruwa</option>
-              <option value="puttalam">Puttalam</option>
-              <option value="ratnapura">Ratnapura</option>
-              <option value="trincomalee">Trincomalee</option>
-              <option value="vavuniya">Vavuniya</option>
+              <option value="Ampara">Ampara</option>
+              <option value="Anuradhapura">Anuradhapura</option>
+              <option value="Badulla">Badulla</option>
+              <option value="Batticaloa">Batticaloa</option>
+              <option value="Colombo">Colombo</option>
+              <option value="Galle">Galle</option>
+              <option value="Gampaha">Gampaha</option>
+              <option value="Hambantota">Hambantota</option>
+              <option value="Jaffna">Jaffna</option>
+              <option value="Kalutara">Kalutara</option>
+              <option value="Kandy">Kandy</option>
+              <option value="Kegalle">Kegalle</option>
+              <option value="Kilinochchi">Kilinochchi</option>
+              <option value="Kurunegala">Kurunegala</option>
+              <option value="Mannar">Mannar</option>
+              <option value="Matale">Matale</option>
+              <option value="Matara">Matara</option>
+              <option value="Monaragala">Monaragala</option>
+              <option value="Mullaitivu">Mullaitivu</option>
+              <option value="Nuwara Eliya">Nuwara Eliya</option>
+              <option value="Polonnaruwa">Polonnaruwa</option>
+              <option value="Puttalam">Puttalam</option>
+              <option value="Ratnapura">Ratnapura</option>
+              <option value="Trincomalee">Trincomalee</option>
+              <option value="Vavuniya">Vavuniya</option>
             </select>
           </div>
           <div className="flex flex-col md:flex-row items-center gap-4">
             <label className="font-semibold md:w-1/3 w-full">Sort:</label>
-            <select onChange={handleChange} value={sidebardata.sort} id="sort" className="border rounded-lg p-3 w-full shadow-2xl">
+            <select
+              onChange={handleChange}
+              value={sidebardata.sort}
+              id="sort"
+              className="border rounded-lg p-3 w-full shadow-2xl"
+            >
               <option value="createdAt_desc">Newest First</option>
               <option value="createdAt_asc">Oldest First</option>
             </select>
@@ -194,9 +199,13 @@ export default function Search() {
         {loading ? (
           <p>Loading...</p>
         ) : (
-          <div className="grid  sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-2">
+          <div className="grid  sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-6">
             {listings.map((listing) => (
-              <ListingItem key={listing._id} listing={listing} className="shadow-2xl" />
+              <ListingItem
+                key={listing._id}
+                listing={listing}
+                className="shadow-2xl"
+              />
             ))}
             {showMore && (
               <button

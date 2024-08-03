@@ -16,9 +16,6 @@ export default function Home() {
   const [dancingListings, setDancingListings] = useState([]);
   const [beraListings, setBeraListings] = useState([]);
   const url = import.meta.env.VITE_BACKEND_URL;
-  
-
- 
 
   useEffect(() => {
     const fetchDjListings = async () => {
