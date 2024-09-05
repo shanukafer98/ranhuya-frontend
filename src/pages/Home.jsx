@@ -168,7 +168,7 @@ export default function Home() {
         <div className="relative flex flex-col lg:flex-row gap-6 p-28 px-3 max-w-7xl mx-auto z-10 ">
           <div className="flex flex-col gap-10 lg:w-2/3  pt-12">
             <h1 className="text-slate-700 font-bold sm:text-2xl lg:text-5xl">
-              Find the {" "}
+              Find the Perfect{" "}
               <span className="text-slate-500">Wedding Services</span>
               <br />
               All in One place
